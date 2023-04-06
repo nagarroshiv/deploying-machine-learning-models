@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_09d5844052be419491d1988d5f367d73 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_7893a55a35f54a85a54baa93a44142b6 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_cde675dc469444c586104c52d18b532c }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_4cd549d166e845a0aa77b94a6c8b5998 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_09d5844052be419491d1988d5f367d73 }}/python:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_cde675dc469444c586104c52d18b532c }}/python:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'mlopstestv1'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_2887f37b01b64ab8a7f0d186e2b5069e }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_09d5844052be419491d1988d5f367d73 }}/python:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_0f3d4b66f8724ab8842ffbf071bfeefd }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_cde675dc469444c586104c52d18b532c }}/python:${{ github.sha }}'
